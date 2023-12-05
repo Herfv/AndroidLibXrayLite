@@ -13,13 +13,13 @@ jobs:
       - name: Setup Go
         uses: actions/setup-go@v2
         with:
-          go-version: '1.19'
+          go-version: '1.21.4'
 
       - name: Setup Android NDK
         uses: nttld/setup-ndk@v1.2.0
         id: setup-ndk
         with:
-          ndk-version: r25c
+          ndk-version: r26b
           add-to-path: false
       
       - name: Setup Gomobile
