@@ -14,7 +14,7 @@ import (
 	"sync"
 	"time"
 
-	mobasset "golang.org/x/mobile/asset"
+	mobasset "github.com/sagernet/gomobile/asset"
 
 	v2net "github.com/xtls/xray-core/common/net"
 	v2filesystem "github.com/xtls/xray-core/common/platform/filesystem"
@@ -248,7 +248,7 @@ CheckVersionX string
 This func will return libv2ray binding version and V2Ray version used.
 */
 func CheckVersionX() string {
-	var version = 27
+	var version = 30
 	return fmt.Sprintf("Lib v%d, Xray-core v%s", version, v2core.Version())
 }
 
