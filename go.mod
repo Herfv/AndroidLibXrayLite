@@ -1,9 +1,11 @@
 module github.com/2dust/AndroidLibXrayLite
 
-go 1.23.5
+go 1.24
+
+toolchain go1.24.0
 
 require (
-	github.com/xtls/xray-core v1.8.25-0.20250221075831-be43f66b63d5
+	github.com/xtls/xray-core v1.8.25-0.20250303153022-e15dff94b5bd
 	golang.org/x/mobile v0.0.0-20250106192035-c31d5b91ecc3
 	golang.org/x/sys v0.30.0
 )
@@ -36,7 +38,7 @@ require (
 	github.com/xtls/reality v0.0.0-20240909153216-e26ae2305463 // indirect
 	go.uber.org/mock v0.5.0 // indirect
 	go4.org/netipx v0.0.0-20231129151722-fdeea329fbba // indirect
-	golang.org/x/crypto v0.33.0 // indirect
+	golang.org/x/crypto v0.35.0 // indirect
 	golang.org/x/exp v0.0.0-20250103183323-7d7fa50e5329 // indirect
 	golang.org/x/mod v0.22.0 // indirect
 	golang.org/x/net v0.35.0 // indirect
@@ -51,5 +53,5 @@ require (
 	google.golang.org/protobuf v1.36.5 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
 	gvisor.dev/gvisor v0.0.0-20241227193629-b8cde430ca0a // indirect
-	lukechampine.com/blake3 v1.3.0 // indirect
+	lukechampine.com/blake3 v1.4.0 // indirect
 )
