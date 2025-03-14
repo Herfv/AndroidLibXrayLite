@@ -1,0 +1,49 @@
+name: Release Build
+on:
+  workflow_dispatch:
+jobs:
+  build:
+      name: Build
+      runs-on: ubuntu-latest
+      steps:
+
+      - name: Checkout
+        uses: actions/checkout@v2
+      
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.22.2'
+
+      - name: Setup Android NDK
+        uses: nttld/setup-ndk@v1.2.0
+        id: setup-ndk
+        with:
+          ndk-version: r26b
+          add-to-path: false
+      
+      - name: Setup Gomobile
+        run: |
+          go mod tidy
+          go install golang.org/x/mobile/cmd/gomobile
+          #gomobile init
+          #go mod tidy
+          gomobile init
+      
+      - name: Build Lib
+        run: |
+          export ANDROID_NDK_HOME="${ANDROID_NDK_HOME}"
+          go mod tidy -v
+          gomobile bind -v -androidapi 21 -ldflags='-s -w' ./
+
+      - uses: actions/upload-artifact@v3.1.1
+        with:
+          name: libv2ray
+          path: libv2ray.aar
+      
+      - name: Upload apk to release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag: ${{ github.ref_name }}
+          tag_name: release
+          files: libv2ray.aar
