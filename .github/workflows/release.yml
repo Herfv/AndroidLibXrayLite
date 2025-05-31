@@ -51,9 +51,16 @@ jobs:
           name: libv2ray
           path: libv2ray.aar
       
-      - name: Upload apk to release
+      - name: Upload aar to release
         uses: softprops/action-gh-release@v1
         with:
           tag: ${{ github.ref_name }}
           tag_name: release
           files: libv2ray.aar
+
+      - name: Upload AndroidLibXrayLite to release
+        uses: softprops/action-gh-release@v1
+        with:
+          tag: ${{ github.ref_name }}
+          tag_name: release
+          file: ./libv2ray*r
