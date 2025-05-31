@@ -9,34 +9,41 @@ jobs:
 
       - name: Checkout
         uses: actions/checkout@v2
-      
-      - name: Setup Go
-        uses: actions/setup-go@v2
-        with:
-          go-version: '1.22.2'
 
-      - name: Setup Android NDK
-        uses: nttld/setup-ndk@v1.2.0
-        id: setup-ndk
+      - name: Setup Golang
+        uses: actions/setup-go@v5.4.0
         with:
-          ndk-version: r26b
-          add-to-path: false
+          go-version-file: 'go.mod'
       
-      - name: Setup Gomobile
+      - name: Install gomobile
         run: |
-          go mod tidy
-          go install golang.org/x/mobile/cmd/gomobile
-          #gomobile init
-          #go mod tidy
-          gomobile init
-      
-      - name: Build Lib
-        run: |
-          export ANDROID_NDK_HOME="${ANDROID_NDK_HOME}"
-          go mod tidy -v
-          gomobile bind -v -androidapi 21 -ldflags='-s -w' ./
+          go install golang.org/x/mobile/cmd/gomobile@latest
+          export PATH=$PATH:~/go/bin
+        
+      - name: Setup Android SDK
+        uses: android-actions/setup-android@v3.2.0
+        with:
+          log-accepted-android-sdk-licenses: false
+          cmdline-tools-version: '12266719'
+          packages: 'platforms;android-35 build-tools;35.0.0 platform-tools'
 
-      - uses: actions/upload-artifact@v3.1.1
+      - name: Install NDK
+        run: |
+          echo "y" | $ANDROID_HOME/cmdline-tools/latest/bin/sdkmanager \
+          --channel=3 \
+          --install "ndk;29.0.13113456"
+          echo "NDK_HOME=$ANDROID_HOME/ndk/29.0.13113456" >> $GITHUB_ENV
+
+      - name: Build
+        run: |
+         mkdir -p assets data
+         bash gen_assets.sh download
+         cp -v data/*.dat assets/
+         gomobile init
+         go mod tidy
+         gomobile bind -v -androidapi 21 -trimpath -ldflags='-s -w -buildid=' ./
+
+      - uses: actions/upload-artifact@v4.6.2
         with:
           name: libv2ray
           path: libv2ray.aar
