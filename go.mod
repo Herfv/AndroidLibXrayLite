@@ -1,6 +1,6 @@
 module github.com/2dust/AndroidLibXrayLite
 
-go 1.24.3
+go 1.24.5
 
 require (
 	github.com/xtls/xray-core v1.250726.0
