@@ -3,7 +3,7 @@ module github.com/2dust/AndroidLibXrayLite
 go 1.25.6
 
 require (
-	github.com/xtls/xray-core v1.260131.0
+	github.com/xtls/xray-core v1.260202.0
 	golang.org/x/mobile v0.0.0-20260120165949-40bd9ace6ce4
 )
 
@@ -41,11 +41,11 @@ require (
 	golang.org/x/tools v0.41.0 // indirect
 	golang.zx2c4.com/wintun v0.0.0-20230126152724-0fa3db229ce2 // indirect
 	golang.zx2c4.com/wireguard v0.0.0-20250521234502-f333402bd9cb // indirect
-	google.golang.org/genproto/googleapis/rpc v0.0.0-20260128011058-8636f8732409 // indirect
+	google.golang.org/genproto/googleapis/rpc v0.0.0-20260202165425-ce8ad4cf556b // indirect
 	google.golang.org/grpc v1.78.0 // indirect
 	google.golang.org/protobuf v1.36.11 // indirect
 	gopkg.in/yaml.v2 v2.4.0 // indirect
-	gvisor.dev/gvisor v0.0.0-20260129214308-cb856800aa1c // indirect
+	gvisor.dev/gvisor v0.0.0-20260202191832-0bd9aedd142c // indirect
 	lukechampine.com/blake3 v1.4.1 // indirect
 )
 
